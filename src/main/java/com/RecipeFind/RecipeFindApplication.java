@@ -1,4 +1,4 @@
-package com.example.RecipeFind;
+package com.RecipeFind;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
