@@ -7,6 +7,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -36,14 +42,9 @@ public class User {
     @Column(name = "phone")
     private String phone;
 
-    @Column(name = "address")
-    private String address;
-
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    @Column(name = "avatar")
-    private byte[] avatar;
 
 }

@@ -2,6 +2,7 @@ package com.RecipeFind.models.dto.builders;
 
 import com.RecipeFind.models.RecipeIngredient;
 import com.RecipeFind.models.dto.RecipeIngredientDTO;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
