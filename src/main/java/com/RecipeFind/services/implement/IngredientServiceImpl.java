@@ -18,9 +18,16 @@ public class IngredientServiceImpl implements IngredientService {
     private IngredientRepository ingredientRepository;
 
     @Override
-    public Ingredient createIngredient(IngredientDTO ingredientDto) {
-        Ingredient ingredient = IngredientDTOBuilder.fromIngredientDTO(ingredientDto);
-        return ingredientRepository.save(ingredient);
+    public Ingredient createIngredient(IngredientDTO ingredientDTO) {
+        // Verificăm dacă ingredientul există deja în baza de date
+        Ingredient existingIngredient = ingredientRepository.findByName(ingredientDTO.getName());
+        if (existingIngredient != null) {
+            return existingIngredient; // Dacă există, returnăm ingredientul găsit
+        } else {
+            // Dacă nu există, creăm unul nou
+            Ingredient newIngredient = IngredientDTOBuilder.fromIngredientDTO(ingredientDTO);
+            return ingredientRepository.save(newIngredient);
+        }
     }
 
     @Override

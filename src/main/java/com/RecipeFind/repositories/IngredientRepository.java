@@ -15,6 +15,9 @@ public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
     // Găsește un ingredient după id-ul său
     Ingredient findIngredientById(Long id);
 
+    // Găsește un ingredient după numele său
+    Ingredient findByName(String name);
+
     // Returnează toate ingredientele din baza de date
     List<Ingredient> findAll();
 

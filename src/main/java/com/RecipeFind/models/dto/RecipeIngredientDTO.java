@@ -17,4 +17,9 @@ public class RecipeIngredientDTO {
     private double quantity;
     private String unitOfMeasure;
 
+    // Getter pentru a obține numele ingredientului
+    public String getIngredientName() {
+        return ingredient.getName();
+    }
+
 }
