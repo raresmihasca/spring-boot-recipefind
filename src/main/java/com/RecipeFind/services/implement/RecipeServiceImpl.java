@@ -8,6 +8,8 @@ import com.RecipeFind.models.dto.RecipeDTO;
 import com.RecipeFind.models.dto.RecipeIngredientDTO;
 import com.RecipeFind.models.dto.builders.RecipeDTOBuilder;
 import com.RecipeFind.models.dto.builders.RecipeIngredientDTOBuilder;
+import com.RecipeFind.repositories.IngredientRepository;
+import com.RecipeFind.repositories.RecipeIngredientRepository;
 import com.RecipeFind.repositories.RecipeRepository;
 import com.RecipeFind.services.IngredientService;
 import com.RecipeFind.services.RecipeIngredientService;
@@ -22,11 +24,36 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Autowired
     private RecipeRepository recipeRepository;
+    @Autowired
+    private RecipeIngredientRepository recipeIngredientRepository;
+    @Autowired
+    private IngredientRepository ingredientRepository;
 
     @Override
-    public Recipe createRecipe(RecipeDTO recipeDTO) {
-        Recipe recipe = RecipeDTOBuilder.fromRecipeDTO(recipeDTO);
-        return recipeRepository.save(recipe);
+    public void createRecipe(RecipeDTO recipeDTO, List<RecipeIngredientDTO> ingredients) {
+        // Creează și salvează rețeta în baza de date
+        Recipe recipe = new Recipe();
+        recipe.setName(recipeDTO.getName());
+        // Adaugă alte detalii despre rețetă (dacă sunt disponibile) folosind setter-ii
+
+        recipe = recipeRepository.save(recipe);
+
+        // Iterează prin lista de ingrediente și adaugă fiecare ingredient în baza de date
+        for (RecipeIngredientDTO ingredientDTO : ingredients) {
+            Ingredient ingredient = new Ingredient();
+            ingredient.setName(ingredientDTO.getIngredientName());
+            // Adaugă alte detalii despre ingredient (dacă sunt disponibile) folosind setter-ii
+            ingredient = ingredientRepository.save(ingredient);
+
+            // Creează o legătură între rețetă și ingredient și salvează-o în baza de date
+            RecipeIngredient recipeIngredient = new RecipeIngredient();
+            recipeIngredient.setRecipe(recipe);
+            recipeIngredient.setIngredient(ingredient);
+            recipeIngredient.setQuantity(ingredientDTO.getQuantity());
+            recipeIngredient.setUnitOfMeasure(ingredientDTO.getUnitOfMeasure());
+
+            recipeIngredientRepository.save(recipeIngredient);
+        }
     }
 
     @Override
