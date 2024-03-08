@@ -22,5 +22,16 @@ public class Ingredient {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "proteins")
+    private double proteins;
+
+    @Column(name = "carbohydrates")
+    private double carbohydrates;
+
+    @Column(name = "fats")
+    private double fats;
+
+    @Column(name = "kcal")
+    private double kcal;
 
 }

@@ -1,5 +1,6 @@
 package com.RecipeFind.models.dto;
 
+import com.RecipeFind.models.enums.RecipeCategory;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,5 +16,10 @@ public class RecipeDTO {
 
     private Long id;
     private String name;
+    private int prepTime;
+    private int servings;
+    private int cookTime;
+    private String instructions;
+    private List<RecipeCategory> category;
 
 }
