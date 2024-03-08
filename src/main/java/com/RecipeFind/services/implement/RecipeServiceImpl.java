@@ -34,6 +34,11 @@ public class RecipeServiceImpl implements RecipeService {
         // Creează și salvează rețeta în baza de date
         Recipe recipe = new Recipe();
         recipe.setName(recipeDTO.getName());
+        recipe.setPrepTime(recipeDTO.getPrepTime()); // Adaugă timpul de preparare
+        recipe.setServings(recipeDTO.getServings()); // Adaugă numărul de porții
+        recipe.setCookTime(recipeDTO.getCookTime()); // Adaugă timpul de gătire
+        recipe.setInstructions(recipeDTO.getInstructions()); // Adaugă instrucțiunile de preparare
+        recipe.setCategory(recipeDTO.getCategory()); // Adaugă categoria rețetei
         // Adaugă alte detalii despre rețetă (dacă sunt disponibile) folosind setter-ii
 
         recipe = recipeRepository.save(recipe);
@@ -42,6 +47,10 @@ public class RecipeServiceImpl implements RecipeService {
         for (RecipeIngredientDTO ingredientDTO : ingredients) {
             Ingredient ingredient = new Ingredient();
             ingredient.setName(ingredientDTO.getIngredientName());
+            ingredient.setProteins(ingredientDTO.getProteins()); // Adaugă proteinele
+            ingredient.setFats(ingredientDTO.getFats()); // Adaugă grăsimile
+            ingredient.setCarbohydrates(ingredientDTO.getCarbohydrates()); // Adaugă carbohidrații
+            ingredient.setKcal(ingredientDTO.getKcal()); // Adaugă numărul de calorii
             // Adaugă alte detalii despre ingredient (dacă sunt disponibile) folosind setter-ii
             ingredient = ingredientRepository.save(ingredient);
 

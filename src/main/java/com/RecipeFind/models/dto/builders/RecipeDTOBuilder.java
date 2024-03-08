@@ -15,6 +15,11 @@ public class RecipeDTOBuilder {
         return RecipeDTO.builder()
                 .id(recipe.getId())
                 .name(recipe.getName())
+                .prepTime(recipe.getPrepTime())
+                .servings(recipe.getServings())
+                .cookTime(recipe.getCookTime())
+                .instructions(recipe.getInstructions())
+                .category(recipe.getCategory())
                 // Alte câmpuri
                 .build();
     }
@@ -22,6 +27,11 @@ public class RecipeDTOBuilder {
     public static Recipe fromRecipeDTO(RecipeDTO recipeDTO) {
         return Recipe.builder()
                 .name(recipeDTO.getName())
+                .prepTime(recipeDTO.getPrepTime())
+                .servings(recipeDTO.getServings())
+                .cookTime(recipeDTO.getCookTime())
+                .instructions(recipeDTO.getInstructions())
+                .category(recipeDTO.getCategory())
                 // Alte câmpuri
                 .build();
     }

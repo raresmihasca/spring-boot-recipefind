@@ -15,6 +15,10 @@ public class IngredientDTOBuilder {
         return IngredientDTO.builder()
                 .id(ingredient.getId())
                 .name(ingredient.getName())
+                .proteins(ingredient.getProteins())
+                .fats(ingredient.getFats())
+                .carbohydrates(ingredient.getCarbohydrates())
+                .kcal(ingredient.getKcal())
                 // Alte câmpuri
                 .build();
     }
@@ -22,6 +26,10 @@ public class IngredientDTOBuilder {
     public static Ingredient fromIngredientDTO(IngredientDTO ingredientDTO) {
         return Ingredient.builder()
                 .name(ingredientDTO.getName())
+                .proteins(ingredientDTO.getProteins())
+                .fats(ingredientDTO.getFats())
+                .carbohydrates(ingredientDTO.getCarbohydrates())
+                .kcal(ingredientDTO.getKcal())
                 // Alte câmpuri
                 .build();
     }

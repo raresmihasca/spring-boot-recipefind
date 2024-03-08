@@ -22,4 +22,20 @@ public class RecipeIngredientDTO {
         return ingredient.getName();
     }
 
+    public double getProteins() {
+        return ingredient.getProteins();
+    }
+
+    public double getFats() {
+        return ingredient.getFats();
+    }
+
+    public double getCarbohydrates() {
+        return ingredient.getCarbohydrates();
+    }
+
+    public double getKcal() {
+        return ingredient.getKcal();
+    }
+
 }
