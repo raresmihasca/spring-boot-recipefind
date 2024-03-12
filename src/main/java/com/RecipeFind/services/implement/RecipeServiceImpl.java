@@ -30,7 +30,7 @@ public class RecipeServiceImpl implements RecipeService {
     private IngredientRepository ingredientRepository;
 
     @Override
-    public void createRecipe(RecipeDTO recipeDTO, List<RecipeIngredientDTO> ingredients) {
+    public void createRecipe(RecipeDTO recipeDTO, List<RecipeIngredientDTO> ingredients, byte[] imageBytes) {
         // Creează și salvează rețeta în baza de date
         Recipe recipe = new Recipe();
         recipe.setName(recipeDTO.getName());
@@ -39,6 +39,7 @@ public class RecipeServiceImpl implements RecipeService {
         recipe.setCookTime(recipeDTO.getCookTime()); // Adaugă timpul de gătire
         recipe.setInstructions(recipeDTO.getInstructions()); // Adaugă instrucțiunile de preparare
         recipe.setCategory(recipeDTO.getCategory()); // Adaugă categoria rețetei
+        recipe.setImage(imageBytes); // Setează imaginea
         // Adaugă alte detalii despre rețetă (dacă sunt disponibile) folosind setter-ii
 
         recipe = recipeRepository.save(recipe);

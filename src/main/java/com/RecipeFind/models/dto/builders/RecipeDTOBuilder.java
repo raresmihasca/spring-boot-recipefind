@@ -20,6 +20,7 @@ public class RecipeDTOBuilder {
                 .cookTime(recipe.getCookTime())
                 .instructions(recipe.getInstructions())
                 .category(recipe.getCategory())
+                .image(recipe.getImage())
                 // Alte câmpuri
                 .build();
     }
@@ -32,6 +33,7 @@ public class RecipeDTOBuilder {
                 .cookTime(recipeDTO.getCookTime())
                 .instructions(recipeDTO.getInstructions())
                 .category(recipeDTO.getCategory())
+                .image(recipeDTO.getImage())
                 // Alte câmpuri
                 .build();
     }

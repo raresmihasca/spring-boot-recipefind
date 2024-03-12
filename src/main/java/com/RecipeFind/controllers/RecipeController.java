@@ -12,10 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/api/recipes")
 public class RecipeController {
@@ -24,14 +25,18 @@ public class RecipeController {
     private RecipeService recipeService;
 
     @PostMapping("/create")
-    public ResponseEntity<String> createRecipe(@RequestBody RecipeRequest recipeRequest) {
+    public ResponseEntity<String> createRecipe(@RequestPart("image") MultipartFile imageFile,
+                                               @RequestPart("recipeRequest") RecipeRequest recipeRequest) {
         try {
             // Extrage rețeta și ingredientele din RecipeRequest
             RecipeDTO recipeDTO = recipeRequest.getRecipe();
             List<RecipeIngredientDTO> ingredients = recipeRequest.getIngredients();
 
+            // Convertește fișierul de imagine într-un array de bytes
+            byte[] imageBytes = imageFile.getBytes();
+
             // Adaugă rețeta și ingredientele în baza de date folosind serviciul adecvat
-            recipeService.createRecipe(recipeDTO, ingredients);
+            recipeService.createRecipe(recipeDTO, ingredients, imageBytes);
 
             return new ResponseEntity<>("Rețetă creată cu succes!", HttpStatus.CREATED);
         } catch (Exception e) {

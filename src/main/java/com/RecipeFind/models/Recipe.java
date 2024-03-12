@@ -7,7 +7,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.annotations.Type;
 
+import java.sql.Types;
 import java.util.List;
 
 @Data
@@ -43,5 +46,9 @@ public class Recipe {
     @Column(name = "category")
     @Enumerated(EnumType.STRING)
     private List<RecipeCategory> category;
+
+    @JdbcTypeCode(Types.VARBINARY)
+    @Column(name = "image")
+    private byte[] image; // Imaginea rețetei sub formă de array de bytes
 
 }

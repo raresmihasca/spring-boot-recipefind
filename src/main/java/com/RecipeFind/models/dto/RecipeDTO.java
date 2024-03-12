@@ -21,5 +21,5 @@ public class RecipeDTO {
     private int cookTime;
     private String instructions;
     private List<RecipeCategory> category;
-
+    private byte[] image;
 }
